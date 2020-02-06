@@ -6,30 +6,24 @@ import {
     setGenresActionCreator,
     setCurrentPageActionCreator,
     openOverViewActionCreator,
-    closeOverViewActionCreator
+    closeOverViewActionCreator,
+    getMoviesThunkCreator,
+    getGenresThunkCreator
 } from "../../redux/movies-reducer";
-import * as axios from "axios";
-import { getUsers, getGenres } from "../../api/api";
-//import {getUsers} from "../../api/api";
 
 class MoviesContainer extends React.Component {
     componentDidMount() {
-        getUsers(this.props.currentPage).then(respone => {
-            this.props.setMovies(respone.results);
-        });
-        getGenres().then(respone => {
-            this.props.setGenres(respone.genres);
-        });
+        this.props.getMovies(this.props.currentPage);
+        this.props.getGenres();
     }
 
     onPageChanged = pageNumber => {
         this.props.setCurrentPage(pageNumber + 1);
-        getUsers(pageNumber + 1).then(respone => {
-            this.props.setMovies(respone.results);
-        });
+        this.props.getMovies(pageNumber + 1);
     };
 
     render() {
+       
         return (
             <MoviesItems
                 openOverView={this.props.openOverView}
@@ -68,6 +62,12 @@ const mapDispatchToProps = dispatch => {
         },
         closeOverView: movieId => {
             dispatch(closeOverViewActionCreator(movieId));
+        },
+        getMovies: currentPage => {
+            dispatch(getMoviesThunkCreator(currentPage));
+        },
+        getGenres: () => {
+            dispatch(getGenresThunkCreator());
         }
     };
 };

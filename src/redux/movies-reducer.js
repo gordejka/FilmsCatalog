@@ -1,5 +1,5 @@
-//const FOLLOW = "FOLLOW";
-//const UNFOLLOW = "UNFOLLOW";
+import { moviesAPI } from "../api/api";
+
 const SET_MOVIES = "SET-MOVIES";
 const SET_GENRE = "SET-GENRE";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
@@ -11,7 +11,8 @@ let initionalState = {
     genres: [],
     totalPages: 10,
     totalFilms: 0,
-    currentPage: 1
+    currentPage: 1,
+    pageContent: 'topRated'
     //isFetching: false
 };
 
@@ -48,20 +49,28 @@ const moviesReducer = (state = initionalState, action) => {
     }
 };
 
+//actionCreators
 export const setMoviesActionCreator = movies => ({ type: SET_MOVIES, movies });
 export const setGenresActionCreator = genres => ({ type: SET_GENRE, genres });
+export const openOverViewActionCreator = movieId => ({type: OPEN_OVERVIEW,movieId});
+export const closeOverViewActionCreator = movieId => ({type: CLOSE_OVERVIEW,movieId});
+export const setCurrentPageActionCreator = currentPage => ({type: SET_CURRENT_PAGE,currentPage});
 
-export const openOverViewActionCreator = movieId => ({
-    type: OPEN_OVERVIEW,
-    movieId
-});
-export const closeOverViewActionCreator = movieId => ({
-    type: CLOSE_OVERVIEW,
-    movieId
-});
 
-export const setCurrentPageActionCreator = currentPage => ({
-    type: SET_CURRENT_PAGE,
-    currentPage
-});
+//thunkCreators
+export const getMoviesThunkCreator = currentPage => {
+    return dispath => {
+        moviesAPI.getTopRated(currentPage).then(respone => {
+            dispath(setMoviesActionCreator(respone.results));
+        });
+    };
+};
+export const getGenresThunkCreator = () => {
+    return dispath => {
+        moviesAPI.getGenres().then(respone => {
+             dispath(setGenresActionCreator(respone.genres));
+        });
+    };
+};
+
 export default moviesReducer;
