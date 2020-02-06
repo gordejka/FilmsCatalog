@@ -1,0 +1,138 @@
+.filmsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+.filmsWrapper > div.item {
+    flex: 1 0 21%; /* explanation below */
+    margin: 10px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.04));
+}
+.img_container {
+    height: 350px;
+    background-size: 100%;
+    background-position: center;
+    border-radius: 3px 3px 0 0;
+}
+.mainInfoWrapper {
+    padding: 20px;
+}
+.mainInfoWrapper > .title {
+    float: left;
+    width: 85%;
+    text-transform: uppercase;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    line-height: 1.1em;
+}
+.mainInfoWrapper > .voteAverage {
+    width: 15%;
+    float: left;
+    border: 2px solid;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 3px;
+    line-height: 1em;
+    color: #49c4f0;
+    font-weight: 500;
+    font-size: 14px;
+}
+.mainInfoWrapper > .genres {
+    font-size: 12px;
+    color: #49c4f0;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    width: 100%;
+    overflow: hidden;
+}
+.additionalInfoWrapper {
+    position: relative;
+}
+.additionalInfoHidden {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    bottom: 0;
+    transition: all 0.4s;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.84);
+    border-radius: 3px 3px 0 0;
+    text-align: center;
+}
+.additionalInfoWrapper:hover .additionalInfoHidden {
+    top: 0;
+    bottom: 0;
+}
+.additionalInfoHidden > .buttonContainer{
+    position: absolute;
+    width: 100%;
+    bottom: 50%;
+}
+.additionalInfoHidden > .buttonContainer > button.viewInfo{
+    display: block;
+    margin: 0 auto;
+    border: 1px solid;
+    color: #ffffff;
+    background: no-repeat;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1em;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.additionalInfoHidden > .buttonContainer > button.viewInfo:hover{
+    background-color: #49c4f0;
+    border: 1px solid #49c4f0;
+    color: #ffffff;
+}
+.overViewContainer{
+    position: absolute;
+    color: white;
+    top: 0;
+    padding: 20px;
+    background: #29a2ce;
+    bottom: 0;
+    font-size: 14px;
+    border-radius: 3px 3px 0 0;
+}
+.selectedPage{
+    font-weight: 600;
+}
+.loadMoreWrapper{
+    width: 100%;
+}
+.loadMoreWrapper button{
+    display: block;
+    margin: 30px auto 35px;
+    border: 1px solid;
+    color: #49c4f0;
+    background: no-repeat;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1em;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.loadMoreWrapper button:hover{
+    background-color: #49c4f0;
+    border: 1px solid #49c4f0;
+    color: #ffffff;
+}
+.iconClose{
+    cursor: pointer;
+}
