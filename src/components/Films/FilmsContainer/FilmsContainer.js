@@ -1,13 +1,7 @@
 import React, { useEffect } from 'react';
 import Film from '../FilmCard/FilmCard'
 import {connect} from 'react-redux'
-import { fetchFilms } from '../../../store/actions/films';
-
-
-const handleScroll = (event) =>{
-    const scrollBottom = event.target.scrollTop;
-    console.log(event); 
-}
+import { fetchFilms, switchFilmOverview } from '../../../store/actions/films';
 
 const FilmsContainer = (props) => {
     useEffect(()=>{
@@ -18,9 +12,14 @@ const FilmsContainer = (props) => {
     const films = props.films.map(film=>{
         return(<Film 
             key={film.id}
+            id={film.id}
             title={film.title}
             vote_average={film.vote_average}
             img={film.poster_path}
+            show_overview={film.show_overview}
+            switchFilmOverview={props.switchFilmOverview}
+            overview={film.overview}
+            genres={film.genres}
             />
         )
     })
@@ -28,8 +27,7 @@ const FilmsContainer = (props) => {
     
 
     return (
-        <div style={{display: 'flex', flexWrap: 'wrap'}}
-            onScroll={console.log(123)}>
+        <div style={{display: 'flex', flexWrap: 'wrap'}}>
             {films}
             {props.loading ? "loading...":""}
         </div>
@@ -45,7 +43,8 @@ const mapStateToProps = (state) =>{
 
 const mapDispathToProps = (dispatch) => {
     return{
-        fetchFilms: () => dispatch(fetchFilms())
+        fetchFilms: () => dispatch(fetchFilms()),
+        switchFilmOverview: (film_id) => dispatch(switchFilmOverview(film_id))
     }
 }
 

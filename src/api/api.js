@@ -21,6 +21,12 @@ export const moviesAPI = {
             .then(response => {
                 return response.data;
             });
-    }
+    },
+    // getFilmVideo(){
+    //     return axios
+    //         .get(
+    //             `${baseURL}genre/movie/list?api_key=${apiKey}&language=en-US`
+    //         )
+    // }
 }
 
